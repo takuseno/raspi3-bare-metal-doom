@@ -1,0 +1,4 @@
+3rd_party
+*.o
+kernel8.img
+kernel8.elf

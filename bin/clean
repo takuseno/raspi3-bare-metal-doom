@@ -1,0 +1,3 @@
+#!/bin/bash -eux
+
+docker run -v .:/work -it --rm takuseno/raspi3-baremetal-doom:latest make clean
