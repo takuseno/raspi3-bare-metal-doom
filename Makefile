@@ -22,7 +22,7 @@ kernel8.img: src/start.o data.o $(OBJS) $(LIBC_OBJS) $(DOOM_OBJS)
 	llvm-objcopy -O binary kernel8.elf kernel8.img
 
 clean:
-	rm kernel8.elf *.o src/*.o libc/*.o >/dev/null 2>/dev/null || true
+	rm kernel8.elf *.o src/*.o libc/*.o doom/*.o >/dev/null 2>/dev/null || true
 
 run: kernel8.img
 	qemu-system-aarch64 -M raspi3b -kernel kernel8.img -serial stdio
