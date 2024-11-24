@@ -1,3 +1,5 @@
+#pragma once
+
 /* a properly aligned buffer */
 extern volatile unsigned int mbox[36];
 

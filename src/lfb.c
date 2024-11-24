@@ -2,6 +2,7 @@
 #include "mbox.h"
 #include "homer.h"
 #include "delays.h"
+#include "lfb.h"
 
 unsigned int width, height, pitch, isrgb;   /* dimensions and channel order */
 unsigned char *lfb;                         /* raw frame buffer address */

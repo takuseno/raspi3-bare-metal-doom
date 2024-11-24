@@ -13,7 +13,12 @@ SECTIONS
         *(COMMON)
         __bss_end = .;
     }
+
     . = ALIGN(4096);
+    __free_ram = .;
+    . += 64 * 1024 * 1024;
+    __free_ram_end = .;
+
     _end = .;
 
    /DISCARD/ : { *(.comment) *(.gnu*) *(.note*) *(.eh_frame*) }

@@ -1,3 +1,5 @@
+#pragma once
+
 static unsigned int homer_width = 96;
 static unsigned int homer_height = 64;
 
