@@ -7,11 +7,14 @@ all: clean kernel8.img
 src/start.o: src/start.S
 	clang --target=aarch64-elf $(CFLAGS) -c src/start.S -o src/start.o
 
+data.o: data.txt
+	ld.lld -m aarch64elf -r -b binary -o data.o data.txt
+
 %.o: %.c
 	clang --target=aarch64-elf $(CFLAGS) -c $< -o $@
 
-kernel8.img: src/start.o $(OBJS)
-	ld.lld -m aarch64elf -nostdlib src/start.o $(OBJS) -T src/link.ld -o kernel8.elf
+kernel8.img: src/start.o data.o $(OBJS)
+	ld.lld -m aarch64elf -nostdlib src/start.o data.o $(OBJS) -T src/link.ld -o kernel8.elf
 	llvm-objcopy -O binary kernel8.elf kernel8.img
 
 clean:
