@@ -1,3 +1,11 @@
+#include "uart.h"
+
 void main() {
-    while(1);
+    uart_init();
+
+    uart_puts("Hello World!\n");
+
+    while (1) {
+        uart_send(uart_getc());
+    }
 }
