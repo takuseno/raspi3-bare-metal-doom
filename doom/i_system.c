@@ -359,7 +359,7 @@ static boolean already_quitting = false;
 void I_Error (char *error, ...)
 {
     char msgbuf[512];
-    va_list argptr;
+    __builtin_va_list argptr;
     atexit_listentry_t *entry;
     boolean exit_gui_popup;
 

@@ -432,7 +432,7 @@ char *M_StringJoin(const char *s, ...)
 
     result_len = strlen(s) + 1;
 
-    va_start(args, s);
+    __builtin_va_start(args, s);
     for (;;)
     {
         v = va_arg(args, const char *);
@@ -455,7 +455,7 @@ char *M_StringJoin(const char *s, ...)
 
     M_StringCopy(result, s, result_len);
 
-    va_start(args, s);
+    __builtin_va_start(args, s);
     for (;;)
     {
         v = va_arg(args, const char *);

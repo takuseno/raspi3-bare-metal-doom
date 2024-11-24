@@ -1,7 +1,9 @@
 SRCS = $(wildcard src/*.c)
 LIBC_SRCS = $(wildcard libc/*.c)
+DOOM_SRCS = $(wildcard doom/*.c)
 OBJS = $(SRCS:.c=.o)
 LIBC_OBJS = $(LIBC_SRCS:.c=.o)
+DOOM_OBJS = $(DOOM_SRCS:.c=.o)
 CFLAGS = -Wall -O2 -ffreestanding -nostdinc -nostdlib -mcpu=cortex-a53+nosimd
 
 all: clean kernel8.img
@@ -15,8 +17,8 @@ data.o: data.txt
 %.o: %.c
 	clang --target=aarch64-elf $(CFLAGS) -Ilibc -c $< -o $@
 
-kernel8.img: src/start.o data.o $(OBJS) $(LIBC_OBJS)
-	ld.lld -m aarch64elf -nostdlib src/start.o data.o $(OBJS) $(LIBC_OBJS) -T link.ld -o kernel8.elf
+kernel8.img: src/start.o data.o $(OBJS) $(LIBC_OBJS) $(DOOM_OBJS)
+	ld.lld -m aarch64elf -nostdlib src/start.o data.o $(OBJS) $(LIBC_OBJS) $(DOOM_OBJS) -T link.ld -o kernel8.elf
 	llvm-objcopy -O binary kernel8.elf kernel8.img
 
 clean:

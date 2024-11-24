@@ -32,7 +32,7 @@
 
 #else
 
-#include <strings.h>
+//#include <strings.h>
 
 #endif
 
@@ -60,7 +60,7 @@
 // pre-standardisation version).  inttypes.h is also in the C99 
 // standard and defined to include stdint.h, so include this. 
 
-#include <inttypes.h>
+//#include <inttypes.h>
 
 #ifdef __cplusplus
 
@@ -79,6 +79,7 @@ typedef enum
 
 #endif
 
+#include <ctype.h>
 typedef uint8_t byte;
 
 #include <limits.h>

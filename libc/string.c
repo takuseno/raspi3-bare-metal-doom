@@ -28,3 +28,9 @@ void* memset(void *s, int c, size_t n) {
     }
     return s;
 }
+
+int strlen(char* s) {
+    int count = 0;
+    while (*s++) ++count;
+    return count;
+}
