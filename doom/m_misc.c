@@ -435,7 +435,7 @@ char *M_StringJoin(const char *s, ...)
     __builtin_va_start(args, s);
     for (;;)
     {
-        v = va_arg(args, const char *);
+        v = __builtin_va_arg(args, const char *);
         if (v == NULL)
         {
             break;
@@ -443,7 +443,7 @@ char *M_StringJoin(const char *s, ...)
 
         result_len += strlen(v);
     }
-    va_end(args);
+    __builtin_va_end(args);
 
     result = malloc(result_len);
 
@@ -458,7 +458,7 @@ char *M_StringJoin(const char *s, ...)
     __builtin_va_start(args, s);
     for (;;)
     {
-        v = va_arg(args, const char *);
+        v = __builtin_va_arg(args, const char *);
         if (v == NULL)
         {
             break;
@@ -466,7 +466,7 @@ char *M_StringJoin(const char *s, ...)
 
         M_StringConcat(result, v, result_len);
     }
-    va_end(args);
+    __builtin_va_end(args);
 
     return result;
 }
@@ -509,9 +509,9 @@ int M_snprintf(char *buf, size_t buf_len, const char *s, ...)
 {
     va_list args;
     int result;
-    va_start(args, s);
+    __builtin_va_start(args, s);
     result = M_vsnprintf(buf, buf_len, s, args);
-    va_end(args);
+    __builtin_va_end(args);
     return result;
 }
 

@@ -22,3 +22,30 @@ void exit(int status) {
     printf("Exitting with status code %d...\n", status);
     while (1);
 }
+
+int atoi(const char *nptr) {
+    char* start = (char*) nptr;
+    char* end = (char*) nptr;
+    int sign = *nptr == '-' ? -1 : 1;
+    if (sign == -1) {
+        ++start;
+        ++end;
+    }
+    // move pointer until the end of digits
+    while (*end) {
+        if (*end < '0' || *end > '9') break;
+        ++end;
+    }
+    int n = 0;
+    int c = 1;
+    for (char* s = end - 1; s <= start; ++s) {
+        n += c * (*s - '0');
+        c *= 10;
+    }
+    return sign * n;
+}
+
+int abs(int num) {
+    if (num < 0) return -1 * num;
+    else return num;
+}

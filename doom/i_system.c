@@ -376,7 +376,7 @@ void I_Error (char *error, ...)
     }
 
     // Message first.
-    va_start(argptr, error);
+    __builtin_va_start(argptr, error);
     //fprintf(stderr, "\nError: ");
     vfprintf(stderr, error, argptr);
     fprintf(stderr, "\n\n");
@@ -384,7 +384,7 @@ void I_Error (char *error, ...)
     fflush(stderr);
 
     // Write a copy of the message into buffer.
-    va_start(argptr, error);
+    __builtin_va_start(argptr, error);
     memset(msgbuf, 0, sizeof(msgbuf));
     M_vsnprintf(msgbuf, sizeof(msgbuf), error, argptr);
     va_end(argptr);
