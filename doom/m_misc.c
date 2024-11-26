@@ -289,20 +289,21 @@ char *M_StrCaseStr(char *haystack, char *needle)
 // allocated.
 //
 
-char *M_StringDuplicate(const char *orig)
-{
-    char *result;
-
-    result = strdup(orig);
-
-    if (result == NULL)
-    {
-        I_Error("Failed to duplicate string (length %i)\n",
-                strlen(orig));
-    }
-
-    return result;
-}
+// This isn't used anywhere.
+// char *M_StringDuplicate(const char *orig)
+// {
+//     char *result;
+// 
+//     result = strdup(orig);
+// 
+//     if (result == NULL)
+//     {
+//         I_Error("Failed to duplicate string (length %i)\n",
+//                 strlen(orig));
+//     }
+// 
+//     return result;
+// }
 
 //
 // String replace function.

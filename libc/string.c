@@ -82,3 +82,45 @@ int strcasecmp(const char *s1, const char *s2) {
     int max_len = s1_len > s2_len ? s1_len : s2_len;
     return strncasecmp(s1, s2, max_len);
 }
+
+int strcmp(const char *s1, const char *s2) {
+    int s1_len = strlen(s1);
+    int s2_len = strlen(s2);
+    return strncmp(s1, s2, s1_len > s2_len ? s1_len : s2_len);
+}
+
+int strncmp(const char *s1, const char *s2, size_t num) {
+    for (int i = 0; i < num; ++i) {
+        if (*s1 != *s2) {
+            return *s1 - *s2;
+        } else {
+            ++s1;
+            ++s2;
+        }
+    }
+    return 0;
+}
+
+char* strncpy(char *dest, const char* src, size_t num) {
+    char *ret = dest;
+    for (int i = 0; i < num; ++i) {
+        *dest++ = *src++;
+    }
+    *dest = '\0';
+    return ret;
+}
+
+char* strcpy(char *dest, const char* src) {
+    return strncpy(dest, src, strlen(src));
+}
+
+char* strstr(const char *str1, const char *str2) {
+    int str1_len = strlen(str1);
+    int str2_len = strlen(str2);
+    for (int i = 0; i < str1_len; ++i) {
+        if (strcmp(str1 + i, str2) == 0) {
+            return (char*) str1 + i;
+        }
+    }
+    return NULL;
+}
