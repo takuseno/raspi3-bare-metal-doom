@@ -54,11 +54,12 @@
 
 void M_MakeDirectory(char *path)
 {
-#ifdef _WIN32
-    mkdir(path);
-#else
-    mkdir(path, 0755);
-#endif
+// do nothing
+// #ifdef _WIN32
+//     mkdir(path);
+// #else
+//     mkdir(path, 0755);
+// #endif
 }
 
 // Check if a file exists
@@ -79,7 +80,8 @@ boolean M_FileExists(char *filename)
         // If we can't open because the file is a directory, the 
         // "file" exists at least!
 
-        return errno == EISDIR;
+        return false;
+        //return errno == EISDIR;
     }
 }
 
@@ -189,10 +191,21 @@ char *M_TempFile(char *s)
 
 boolean M_StrToInt(const char *str, int *result)
 {
-    return sscanf(str, " 0x%x", result) == 1
-        || sscanf(str, " 0X%x", result) == 1
-        || sscanf(str, " 0%o", result) == 1
-        || sscanf(str, " %d", result) == 1;
+    // reimplement this without sscanf
+    // return sscanf(str, " 0x%x", result) == 1
+    //     || sscanf(str, " 0X%x", result) == 1
+    //     || sscanf(str, " 0%o", result) == 1
+    //     || sscanf(str, " %d", result) == 1;
+    if (strstr(str, "0x") == str) {
+        return 0;
+    } else if (strstr(str, "0X")) {
+        return 0;
+    } else if (strstr(str, "0")) {
+        return 0;
+    } else {
+        *result = atoi(str);
+        return 1;
+    }
 }
 
 void M_ExtractFileBase(char *path, char *dest)

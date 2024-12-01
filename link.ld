@@ -19,6 +19,11 @@ SECTIONS
     . += 64 * 1024 * 1024;
     __free_ram_end = .;
 
+    . = ALIGN(4096);
+    __disk_start = .;
+    . += 128 * 1024 * 1024;
+    __disk_end = .;
+
     _end = .;
 
    /DISCARD/ : { *(.comment) *(.gnu*) *(.note*) *(.eh_frame*) }

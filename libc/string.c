@@ -117,8 +117,10 @@ char* strcpy(char *dest, const char* src) {
 char* strstr(const char *str1, const char *str2) {
     int str1_len = strlen(str1);
     for (int i = 0; i < str1_len; ++i) {
-        if (strcmp(str1 + i, str2) == 0) {
-            return (char*) str1 + i;
+        for (int j = 1; j <= str1_len - i; ++j) {
+            if (strncmp(str1 + i, str2, j) == 0) {
+                return (char*) str1 + i;
+            }
         }
     }
     return NULL;

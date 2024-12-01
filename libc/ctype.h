@@ -10,6 +10,7 @@ typedef int int32_t;
 typedef uint8_t bool;
 typedef long long int64_t;
 typedef unsigned long long uint64_t;
+typedef int* intptr_t;
 
 #define NULL 0
 

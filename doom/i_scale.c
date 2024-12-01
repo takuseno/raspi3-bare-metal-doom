@@ -375,9 +375,9 @@ static void I_InitStretchTables(byte *palette)
     // mix 100% =  just write line 2
 
     printf("I_InitStretchTables: Generating lookup tables..");
-    fflush(stdout);
+    //fflush(stdout);
     stretch_tables[0] = GenerateStretchTable(palette, 20);
-    printf(".."); fflush(stdout);
+    printf("..");// fflush(stdout);
     stretch_tables[1] = GenerateStretchTable(palette, 40);
     puts("");
 }
@@ -392,7 +392,7 @@ static void I_InitSquashTable(byte *palette)
     }
 
     printf("I_InitSquashTable: Generating lookup table..");
-    fflush(stdout);
+    //fflush(stdout);
     half_stretch_table = GenerateStretchTable(palette, 50);
     puts("");
 }
