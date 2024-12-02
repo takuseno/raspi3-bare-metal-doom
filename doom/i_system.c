@@ -271,7 +271,7 @@ void I_Quit (void)
 
 static int ZenityAvailable(void)
 {
-    return system(ZENITY_BINARY " --help >/dev/null 2>&1") == 0;
+    return 0;
 }
 
 // Escape special characters in the given string so that they can be
@@ -380,14 +380,14 @@ void I_Error (char *error, ...)
     //fprintf(stderr, "\nError: ");
     // vprintf(error, argptr);
     // fprintf(stderr, "\n\n");
-    va_end(argptr);
+    __builtin_va_end(argptr);
     //fflush(stderr);
 
     // Write a copy of the message into buffer.
     __builtin_va_start(argptr, error);
     memset(msgbuf, 0, sizeof(msgbuf));
     M_vsnprintf(msgbuf, sizeof(msgbuf), error, argptr);
-    va_end(argptr);
+    __builtin_va_end(argptr);
 
     printf(msgbuf);
 

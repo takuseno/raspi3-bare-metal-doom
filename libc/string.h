@@ -15,3 +15,4 @@ int strncmp(const char *s1, const char *s2, size_t num);
 char* strcpy(char *dest, const char* src);
 char* strncpy(char *dest, const char* src, size_t num);
 char* strstr(const char *str1, const char *str2);
+char *strdup(const char *s);

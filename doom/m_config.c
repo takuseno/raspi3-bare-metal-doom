@@ -1715,14 +1715,26 @@ static void SaveDefaultCollection(default_collection_t *collection)
 
 static int ParseIntParameter(char *strparm)
 {
-    int parm;
-
-    if (strparm[0] == '0' && strparm[1] == 'x')
-        sscanf(strparm+2, "%x", &parm);
-    else
-        sscanf(strparm, "%i", &parm);
-
-    return parm;
+    if (strparm[0] == '0' && strparm[1] == 'x') {
+        char* start = strparm + 2;
+        char* end = start;
+        while (*end) ++end;
+        int n = 0;
+        int c = 1;
+        for (char *s = end - 1; s <= start; --s) {
+            if (*s >= 0 && *s <= 9) {
+                n += c * (*s - '0');
+            } else if (*s >= 'a' && *s <= 'z') {
+                n += c * (*s - 'a' + 10);
+            } else {
+                n += c * (*s - 'A' + 10);
+            }
+            c *= 16;
+        }
+        return n;
+    } else {
+        return atoi(strparm);
+    }
 }
 
 static void SetVariable(default_t *def, char *value)

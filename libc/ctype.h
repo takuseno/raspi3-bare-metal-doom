@@ -15,3 +15,4 @@ typedef int* intptr_t;
 #define NULL 0
 
 int toupper(int c);
+int isspace(int c);
