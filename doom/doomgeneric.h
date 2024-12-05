@@ -12,6 +12,7 @@
 #define DOOMGENERIC_RESY 400
 #endif  // DOOMGENERIC_RESY
 
+#define CMAP256
 
 #ifdef CMAP256
 

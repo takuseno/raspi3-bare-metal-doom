@@ -376,19 +376,17 @@ void I_Error (char *error, ...)
     }
 
     // Message first.
-    __builtin_va_start(argptr, error);
+    //__builtin_va_start(argptr, error);
     //fprintf(stderr, "\nError: ");
     // vprintf(error, argptr);
     // fprintf(stderr, "\n\n");
-    __builtin_va_end(argptr);
+    //__builtin_va_end(argptr);
     //fflush(stderr);
 
     // Write a copy of the message into buffer.
     __builtin_va_start(argptr, error);
     memset(msgbuf, 0, sizeof(msgbuf));
-    M_vsnprintf(msgbuf, sizeof(msgbuf), error, argptr);
-    __builtin_va_end(argptr);
-
+    vsnprintf(msgbuf, sizeof(msgbuf), error, argptr);
     printf(msgbuf);
 
     // Shutdown. Here might be other errors.

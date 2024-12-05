@@ -218,7 +218,7 @@ wad_file_t *W_AddFile (char *filename)
 		lump_p->wad_file = wad_file;
 		lump_p->position = LONG(filerover->filepos);
 		lump_p->size = LONG(filerover->size);
-			lump_p->cache = NULL;
+		lump_p->cache = NULL;
 		strncpy(lump_p->name, filerover->name, 8);
 
 			++lump_p;
@@ -399,13 +399,11 @@ void *W_CacheLumpNum(int lumpnum, int tag)
     if (lump->wad_file->mapped != NULL)
     {
         // Memory mapped file, return from the mmapped region.
-
         result = lump->wad_file->mapped + lump->position;
     }
     else if (lump->cache != NULL)
     {
         // Already cached, so just switch the zone tag.
-
         result = lump->cache;
         Z_ChangeTag(lump->cache, tag);
     }
@@ -414,7 +412,7 @@ void *W_CacheLumpNum(int lumpnum, int tag)
         // Not yet loaded, so load it now
 
         lump->cache = Z_Malloc(W_LumpLength(lumpnum), tag, &lump->cache);
-	W_ReadLump (lumpnum, lump->cache);
+	    W_ReadLump (lumpnum, lump->cache);
         result = lump->cache;
     }
 	

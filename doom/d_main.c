@@ -346,7 +346,7 @@ void D_BindVariables(void)
     M_BindWeaponControls();
     M_BindMapControls();
     M_BindMenuControls();
-    M_BindChatControls(MAXPLAYERS);
+    // M_BindChatControls(MAXPLAYERS);
 
     key_multi_msgplayer[0] = HUSTR_KEYGREEN;
     key_multi_msgplayer[1] = HUSTR_KEYINDIGO;
@@ -370,13 +370,13 @@ void D_BindVariables(void)
 
     // Multiplayer chat macros
 
-    for (i=0; i<10; ++i)
-    {
-        char buf[12];
+    // for (i=0; i<10; ++i)
+    // {
+    //     char buf[12];
 
-        M_snprintf(buf, sizeof(buf), "chatmacro%i", i);
-        M_BindVariable(buf, &chat_macros[i]);
-    }
+    //     M_snprintf(buf, sizeof(buf), "chatmacro%i", i);
+    //     M_BindVariable(buf, &chat_macros[i]);
+    // }
 }
 
 //

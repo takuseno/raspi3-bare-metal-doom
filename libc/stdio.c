@@ -15,8 +15,8 @@ int putchar(int c) {
 }
 
 int vsnprintf(char* s, size_t n, const char* fmt, va_list args) {
-    char tmp[100];
-    if (n > 100) return -1;
+    char tmp[1000];
+    if (n > 1000) return -1;
     int ret = vsprintf(tmp, (char*)fmt, args);
     for (int i = 0; i < n; ++i) {
         s[i] = tmp[i];
@@ -59,8 +59,11 @@ FILE *fopen(const char *path, const char *mode) {
     if (strchr(mode, 'r')) {  // read mode
         int index = find_file_index_by_name(path);
         if (index > -1) {
-            FILE* file = disk[index];
-            file->ptr = file->base;
+            FILE* file = (FILE*) malloc(sizeof(FILE));
+            file->ptr = disk[index]->ptr;
+            file->base = disk[index]->base;
+            file->count = disk[index]->count;
+            file->bufsiz = disk[index]->bufsiz;
             file->mode = 'r';
             return file;
         } else {
@@ -79,7 +82,7 @@ FILE *fopen(const char *path, const char *mode) {
         }
 
         // create new one
-        FILE* new_file = disk[file_count];
+        FILE* new_file = (FILE*) malloc(sizeof(FILE));
         cursor_from_end += 1 * 1024 * 1024;
         unsigned long total_size = &__disk_end - &__disk_start;
         if (cursor_from_end > total_size) {
@@ -92,6 +95,7 @@ FILE *fopen(const char *path, const char *mode) {
         new_file->count = 0;
         file_names[file_count] = (char*) malloc(strlen(path) + 1);
         strcpy(file_names[file_count], path);
+        disk[file_count] = new_file;
         file_count++;
         return new_file;
     }
@@ -115,8 +119,11 @@ int remove(const char *filename) {
 }
 
 int fclose(FILE *stream) {
-    // do nothing
-    return 0;
+    for (int i = 0; i < file_count; ++i) {
+        if (stream->base == disk[i]->base) {
+            disk[i]->count = stream->count;
+        }
+    }
 }
 
 int fseek(FILE *fp, long offset, int origin) {
@@ -140,6 +147,7 @@ size_t fwrite(const void *buf, size_t size, size_t n, FILE *fp) {
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < size; ++j) {
             *fp->ptr++ = *chbuf++;
+            fp->count++;
         }
     }
     return size * n;

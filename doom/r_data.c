@@ -753,7 +753,6 @@ int	R_CheckTextureNumForName (char *name)
     key = W_LumpNameHash(name) % numtextures;
 
     texture=textures_hashtable[key]; 
-    
     while (texture != NULL)
     {
 	if (!strncasecmp (texture->name, name, 8) )

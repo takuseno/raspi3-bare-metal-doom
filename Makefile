@@ -14,15 +14,18 @@ src/start.o: src/start.S
 data.o: data.txt
 	ld.lld -m aarch64elf -r -b binary -o data.o data.txt
 
+doom1wad.o: doom1.wad
+	ld.lld -m aarch64elf -r -b binary -o doom1wad.o doom1.wad
+
 %.o: %.c
 	clang --target=aarch64-elf $(CFLAGS) -Ilibc -c $< -o $@
 
-kernel8.img: src/start.o data.o $(OBJS) $(LIBC_OBJS) $(DOOM_OBJS)
-	ld.lld -m aarch64elf -nostdlib src/start.o data.o $(OBJS) $(LIBC_OBJS) $(DOOM_OBJS) -T link.ld -o kernel8.elf
+kernel8.img: src/start.o data.o doom1wad.o $(OBJS) $(LIBC_OBJS) $(DOOM_OBJS)
+	ld.lld -m aarch64elf -nostdlib src/start.o data.o doom1wad.o $(OBJS) $(LIBC_OBJS) $(DOOM_OBJS) -T link.ld -o kernel8.elf
 	llvm-objcopy -O binary kernel8.elf kernel8.img
 
 clean:
 	rm kernel8.elf *.o src/*.o libc/*.o doom/*.o >/dev/null 2>/dev/null || true
 
 run: kernel8.img
-	qemu-system-aarch64 -M raspi3b -kernel kernel8.img -serial stdio
+	qemu-system-aarch64 -M raspi3b -kernel kernel8.img -serial mon:stdio --no-reboot

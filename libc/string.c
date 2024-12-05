@@ -3,13 +3,15 @@
 
 void* memcpy(void *dest, const void *src, size_t count) {
     for (int i = 0; i < count; ++i) {
-        *((char*) src + i) = *((char*) dest + i);
+        *((char*) dest + i) = *((char*) src + i);
     }
     return dest;
 }
 
 void* memmove(void *dest, const void *src, size_t n) {
-    return memcpy(dest, src, n);
+    void* tmp = malloc(n);
+    memcpy(tmp, src, n);
+    return memcpy(dest, tmp, n);
 }
 
 int memcmp(const void *s1, const void *s2, size_t n) {
@@ -42,6 +44,7 @@ char *strchr(const char* str, int c) {
         if (*ptr == c) {
             return ptr;
         }
+        ++ptr;
     }
     return NULL;
 }
@@ -106,8 +109,10 @@ char* strncpy(char *dest, const char* src, size_t num) {
     char *ret = dest;
     for (int i = 0; i < num; ++i) {
         *dest++ = *src++;
+        if (!*(dest - 1)) {
+            return ret;
+        }
     }
-    *dest = '\0';
     return ret;
 }
 

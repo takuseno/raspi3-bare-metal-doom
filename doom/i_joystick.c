@@ -114,6 +114,9 @@ static boolean IsValidAxis(int axis)
 
 void I_InitJoystick(void)
 {
+    if (!usejoystick) {
+        return;
+    }
 #ifdef ORIGCODE
     if (!usejoystick)
     {
