@@ -9,10 +9,14 @@ This project is aiming to run Doom on Raspberry Pi 3 with bare metal programming
 ⚠️ Currently, there is no controller/keyboard support to play the game. I don't have much interest to support this because my goal was to learn bare metal programming. If you want, the easiest way would be to wire UART and Doom's keyboard handler.
 
 ## Development with QEMU
-### Build Docker container
+### Preparation
 This Docker container installs dependencies necessary to cross-compile programs for 64bit ARM.
 ```
+# build Docker container for development
 bin/build-docker
+
+# download DOOM game data
+bin/download-doom1-wad
 ```
 
 ### Build and execute Doom
