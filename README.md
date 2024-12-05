@@ -22,7 +22,7 @@ bin/run
 ```
 ![image](https://github.com/user-attachments/assets/397f1f97-31ec-4243-a03a-00cb195b8e73)
 
-### CLean
+### Clean
 Clean up object files and binaries.
 ```
 bin/clean
