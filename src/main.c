@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include "../doom/doomgeneric.h"
 
-extern volatile unsigned char _binary_data_txt_start;
 extern volatile unsigned char _binary_doom1_wad_start;
 extern volatile unsigned char _binary_doom1_wad_end;
 
