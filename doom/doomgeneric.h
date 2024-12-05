@@ -12,8 +12,6 @@
 #define DOOMGENERIC_RESY 400
 #endif  // DOOMGENERIC_RESY
 
-#define CMAP256
-
 #ifdef CMAP256
 
 typedef uint8_t pixel_t;
