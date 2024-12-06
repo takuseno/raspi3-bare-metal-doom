@@ -1,0 +1,6 @@
+#/bin/bash -eux
+
+mkdir firmware
+wget https://github.com/raspberrypi/firmware/raw/refs/heads/master/boot/bootcode.bin -O firmware/bootcode.bin
+wget https://github.com/raspberrypi/firmware/raw/refs/heads/master/boot/start.elf -O firmware/start.elf
+wget https://github.com/raspberrypi/firmware/raw/refs/heads/master/boot/fixup.dat -O firmware/fixup.dat
