@@ -6,6 +6,7 @@
 
 // defined in src/delays.c
 extern void wait_msec(unsigned int n);
+extern unsigned long get_system_timer();
 // defined in src/lfb.c
 extern void lfb_draw(unsigned int pic_width, unsigned int pic_height, unsigned char *data);
 
@@ -43,9 +44,7 @@ void DG_SleepMs(uint32_t ms) {
 }
 
 uint32_t DG_GetTicksMs() {
-    register unsigned long t;
-    asm volatile ("mrs %0, cntpct_el0" : "=r"(t));
-    return t;
+    return get_system_timer();
 }
 
 int DG_GetKey(int* pressed, unsigned char* key) {
