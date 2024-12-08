@@ -17,8 +17,8 @@ doom1wad.o: doom1.wad
 %.o: %.c
 	clang --target=aarch64-elf $(CFLAGS) -Ilibc -c $< -o $@
 
-kernel8.img: src/start.o doom1wad.o $(OBJS) $(LIBC_OBJS) $(DOOM_OBJS)
-	ld.lld -m aarch64elf -nostdlib src/start.o doom1wad.o $(OBJS) $(LIBC_OBJS) $(DOOM_OBJS) -T link.ld -o kernel8.elf
+kernel8.img: src/start.o doom1wad.o src/link.ld $(OBJS) $(LIBC_OBJS) $(DOOM_OBJS)
+	ld.lld -m aarch64elf -nostdlib src/start.o doom1wad.o $(OBJS) $(LIBC_OBJS) $(DOOM_OBJS) -T src/link.ld -o kernel8.elf
 	llvm-objcopy -O binary kernel8.elf kernel8.img
 
 clean:
