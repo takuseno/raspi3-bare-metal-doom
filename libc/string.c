@@ -117,7 +117,7 @@ char* strncpy(char *dest, const char* src, size_t num) {
 }
 
 char* strcpy(char *dest, const char* src) {
-    return strncpy(dest, src, strlen(src));
+    return strncpy(dest, src, strlen(src) + 1);
 }
 
 char* strstr(const char *str1, const char *str2) {

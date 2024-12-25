@@ -2,17 +2,22 @@
 #include "stdio.h"
 #include "string.h"
 
+#define PAGE_SIZE 4096
+
 extern volatile unsigned char __free_ram;
 extern volatile unsigned char __free_ram_end;
 
 void* malloc(size_t size) {
     static unsigned long cursor_from_end = 0;
     unsigned long total_size = &__free_ram_end - &__free_ram;
-    cursor_from_end += size;
+    int n = (float)size / PAGE_SIZE + 1;
+    cursor_from_end += n * PAGE_SIZE;
     if (cursor_from_end > total_size) {
         return 0;
     }
-    return (void*)(&__free_ram_end - cursor_from_end);
+    void* ptr = (void*)(&__free_ram_end - cursor_from_end);
+    printf("malloc size=%d, address=%d\n", size, ptr);
+    return ptr;
 }
 
 void* calloc(size_t n, size_t size) {
