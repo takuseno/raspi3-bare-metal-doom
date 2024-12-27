@@ -1,5 +1,8 @@
 # Bare Metal Doom for Raspberry Pi 3
 
+![20241227_145246](https://github.com/user-attachments/assets/1b9702b3-75e8-4e2b-85f3-a5a37ade1d68)
+
+
 This project is aiming to run Doom on Raspberry Pi 3 with bare metal programming.
 
 - `libc`: The original (and heavily simplified) standard C library for this bare metal programming.
@@ -15,6 +18,8 @@ Keyboard inputs are mapped to UART interface.
 - `f`: Fire.
 - `u`: Use.
 - `o`: Escape.
+
+:warning: Currently, there is a serious issue with the real hardware even though it works perfectly on the simulator. The game starts, but you can't really play it with the real hardware now.
 
 ## Development with QEMU
 ### Preparation
@@ -41,7 +46,7 @@ bin/clean
 ```
 
 ## Run with Raspberry Pi 3
-:warning: Currently, there is an issue with the real hardware even though it works perfectly on the simulator. Issues are:
+There are critical issues with the real hardware now. Issues are:
 - During a demo, when the player gets an armor, the game hangs.
 - When keyboard inputs are detected, the game hangs.
 
