@@ -561,6 +561,7 @@ void R_InitTextures (void)
 	    directory = maptex+1;
 	}
 		
+    printf("InitTextures hack0\n");
 	offset = LONG(*directory);
 
 	if (offset > maxoff)
@@ -573,8 +574,11 @@ void R_InitTextures (void)
 		      + sizeof(texpatch_t)*(SHORT(mtexture->patchcount)-1),
 		      PU_STATIC, 0);
 	
+    printf("InitTextures hack1\n");
 	texture->width = SHORT(mtexture->width);
+    printf("InitTextures hack2\n");
 	texture->height = SHORT(mtexture->height);
+    printf("InitTextures hack3\n");
 	texture->patchcount = SHORT(mtexture->patchcount);
 	
 	memcpy (texture->name, mtexture->name, sizeof(texture->name));
@@ -583,9 +587,13 @@ void R_InitTextures (void)
 
 	for (j=0 ; j<texture->patchcount ; j++, mpatch++, patch++)
 	{
+        printf("InitTextures hack4\n");
 	    patch->originx = SHORT(mpatch->originx);
+        printf("InitTextures hack5\n");
 	    patch->originy = SHORT(mpatch->originy);
+        printf("InitTextures hack6\n");
 	    patch->patch = patchlookup[SHORT(mpatch->patch)];
+        printf("InitTextures hack7\n");
 	    if (patch->patch == -1)
 	    {
 		I_Error ("R_InitTextures: Missing patch in texture %s",

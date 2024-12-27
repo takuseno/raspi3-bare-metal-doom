@@ -106,7 +106,7 @@ byte*		rejectmatrix;
 
 mapthing_t	deathmatchstarts[MAX_DEATHMATCH_STARTS];
 mapthing_t*	deathmatch_p;
-mapthing_t	playerstarts[MAXPLAYERS];
+mapthing_t  playerstarts[MAXPLAYERS];
 
 
 
@@ -278,12 +278,17 @@ void P_LoadSectors (int lump)
     ss = sectors;
     for (i=0 ; i<numsectors ; i++, ss++, ms++)
     {
+    printf("P_LOadSectors hack0\n");
 	ss->floorheight = SHORT(ms->floorheight)<<FRACBITS;
+    printf("P_LOadSectors hack1\n");
 	ss->ceilingheight = SHORT(ms->ceilingheight)<<FRACBITS;
 	ss->floorpic = R_FlatNumForName(ms->floorpic);
 	ss->ceilingpic = R_FlatNumForName(ms->ceilingpic);
+    printf("P_LOadSectors hack2\n");
 	ss->lightlevel = SHORT(ms->lightlevel);
+    printf("P_LOadSectors hack3\n");
 	ss->special = SHORT(ms->special);
+    printf("P_LOadSectors hack4\n");
 	ss->tag = SHORT(ms->tag);
 	ss->thinglist = NULL;
     }
@@ -352,6 +357,7 @@ void P_LoadThings (int lump)
 	// Do not spawn cool, new monsters if !commercial
 	if (gamemode != commercial)
 	{
+        printf("P_LoadThings0\n");
 	    switch (SHORT(mt->type))
 	    {
 	      case 68:	// Arachnotron
@@ -372,11 +378,17 @@ void P_LoadThings (int lump)
 	    break;
 
 	// Do spawn all other stuff. 
+    printf("P_LoadThings hack1\n");
 	spawnthing.x = SHORT(mt->x);
+    printf("P_LoadThings hack2\n");
 	spawnthing.y = SHORT(mt->y);
+    printf("P_LoadThings hack3\n");
 	spawnthing.angle = SHORT(mt->angle);
+    printf("P_LoadThings hack4\n");
 	spawnthing.type = SHORT(mt->type);
+    printf("P_LoadThings hack5\n");
 	spawnthing.options = SHORT(mt->options);
+    printf("P_LoadThings hack6\n");
 	
 	P_SpawnMapThing(&spawnthing);
     }
@@ -407,10 +419,15 @@ void P_LoadLineDefs (int lump)
     ld = lines;
     for (i=0 ; i<numlines ; i++, mld++, ld++)
     {
+    printf("P_LOadLineDefs hack0\n");
 	ld->flags = SHORT(mld->flags);
+    printf("P_LOadLineDefs hack1\n");
 	ld->special = SHORT(mld->special);
+    printf("P_LOadLineDefs hack2\n");
 	ld->tag = SHORT(mld->tag);
+    printf("P_LOadLineDefs hack3\n");
 	v1 = ld->v1 = &vertexes[SHORT(mld->v1)];
+    printf("P_LOadLineDefs hack4\n");
 	v2 = ld->v2 = &vertexes[SHORT(mld->v2)];
 	ld->dx = v2->x - v1->x;
 	ld->dy = v2->y - v1->y;
@@ -449,7 +466,9 @@ void P_LoadLineDefs (int lump)
 	    ld->bbox[BOXTOP] = v1->y;
 	}
 
+    printf("P_LOadLineDefs hack5\n");
 	ld->sidenum[0] = SHORT(mld->sidenum[0]);
+    printf("P_LOadLineDefs hack6\n");
 	ld->sidenum[1] = SHORT(mld->sidenum[1]);
 
 	if (ld->sidenum[0] != -1)
@@ -751,13 +770,18 @@ P_SetupLevel
     char	lumpname[9];
     int		lumpnum;
 	
+    printf("P_SetupLevel hack0\n");
     totalkills = totalitems = totalsecret = wminfo.maxfrags = 0;
+    printf("P_SetupLevel hack1\n");
     wminfo.partime = 180;
+    printf("P_SetupLevel hack2\n");
     for (i=0 ; i<MAXPLAYERS ; i++)
     {
+    printf("P_SetupLevel hack3\n");
 	players[i].killcount = players[i].secretcount 
 	    = players[i].itemcount = 0;
     }
+    printf("P_SetupLevel hack4\n");
 
     // Initial height of PointOfView
     // will be set by player think.
@@ -802,13 +826,16 @@ P_SetupLevel
     P_LoadSubsectors (lumpnum+ML_SSECTORS);
     P_LoadNodes (lumpnum+ML_NODES);
     P_LoadSegs (lumpnum+ML_SEGS);
+    printf("P_SetupLevel hack5\n");
 
     P_GroupLines ();
+    printf("P_SetupLevel hack6\n");
     P_LoadReject (lumpnum+ML_REJECT);
 
     bodyqueslot = 0;
     deathmatch_p = deathmatchstarts;
     P_LoadThings (lumpnum+ML_THINGS);
+    printf("P_SetupLevel hack7\n");
     
     // if deathmatch, randomly spawn the active players
     if (deathmatch)
@@ -825,8 +852,10 @@ P_SetupLevel
     // clear special respawning que
     iquehead = iquetail = 0;		
 	
+    printf("P_SetupLevel hack8\n");
     // set up world state
     P_SpawnSpecials ();
+    printf("P_SetupLevel hack9\n");
 	
     // build subsector connect matrix
     //	UNUSED P_ConnectSubsectors ();

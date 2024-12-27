@@ -262,30 +262,37 @@ wipe_ScreenWipe
   int	ticks )
 {
     int rc;
+    printf("wipe_ScreenWipe hack0\n");
     static int (*wipes[])(int, int, int) =
     {
 	wipe_initColorXForm, wipe_doColorXForm, wipe_exitColorXForm,
 	wipe_initMelt, wipe_doMelt, wipe_exitMelt
     };
 
+    printf("wipe_ScreenWipe hack1\n");
     // initial stuff
     if (!go)
     {
 	go = 1;
 	// wipe_scr = (byte *) Z_Malloc(width*height, PU_STATIC, 0); // DEBUG
+    printf("wipe_ScreenWipe hack2\n");
 	wipe_scr = I_VideoBuffer;
 	(*wipes[wipeno*3])(width, height, ticks);
     }
 
+    printf("wipe_ScreenWipe hack3\n");
     // do a piece of wipe-in
     V_MarkRect(0, 0, width, height);
+    printf("wipe_ScreenWipe hack4\n");
     rc = (*wipes[wipeno*3+1])(width, height, ticks);
+    printf("wipe_ScreenWipe hack5\n");
     //  V_DrawBlock(x, y, 0, width, height, wipe_scr); // DEBUG
 
     // final stuff
     if (rc)
     {
 	go = 0;
+    printf("wipe_ScreenWipe hack6\n");
 	(*wipes[wipeno*3+2])(width, height, ticks);
     }
 

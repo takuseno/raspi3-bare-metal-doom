@@ -1086,17 +1086,28 @@ void G_PlayerReborn (int player)
     p = &players[player]; 
     memset (p, 0, sizeof(*p)); 
  
+    printf("G_PlayerReborn hack0\n");
     memcpy (players[player].frags, frags, sizeof(players[player].frags)); 
+    printf("G_PlayerReborn hack1\n");
     players[player].killcount = killcount; 
+    printf("G_PlayerReborn hack2\n");
     players[player].itemcount = itemcount; 
+    printf("G_PlayerReborn hack3\n");
     players[player].secretcount = secretcount; 
+    printf("G_PlayerReborn hack4\n");
  
     p->usedown = p->attackdown = true;	// don't do anything immediately 
     p->playerstate = PST_LIVE;       
     p->health = deh_initial_health;     // Use dehacked value
-    p->readyweapon = p->pendingweapon = wp_pistol; 
+    printf("G_PlayerReborn hack5\n");
+    p->pendingweapon = wp_pistol;
+    printf("G_PlayerReborn hack6\n");
+    p->readyweapon = wp_pistol;
+    printf("G_PlayerReborn hack7\n");
     p->weaponowned[wp_fist] = true; 
+    printf("G_PlayerReborn hack8\n");
     p->weaponowned[wp_pistol] = true; 
+    printf("G_PlayerReborn hack9\n");
     p->ammo[am_clip] = deh_initial_bullets; 
 	 
     for (i=0 ; i<NUMAMMO ; i++) 

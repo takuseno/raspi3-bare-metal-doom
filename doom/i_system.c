@@ -339,12 +339,13 @@ static int ZenityErrorBox(char *message)
     M_snprintf(errorboxpath, errorboxpath_size, "%s --error --text=%s",
                ZENITY_BINARY, escaped_message);
 
-    result = system(errorboxpath);
+    //result = system(errorboxpath);
 
     free(errorboxpath);
     free(escaped_message);
 
-    return result;
+    return 0;
+    //return result;
 }
 
 #endif /* !defined(_WIN32) && !defined(__MACOSX__) && !defined(__DJGPP__) */

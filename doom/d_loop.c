@@ -437,12 +437,19 @@ void D_StartNetGame(net_gamesettings_t *settings,
     //    printf("Syncing netgames like Vanilla Doom.\n");
     //}
 #else
+    printf("D_StartNetGame hack 0\n");
     settings->consoleplayer = 0;
+    printf("D_StartNetGame hack 1\n");
 	settings->num_players = 1;
+    printf("D_StartNetGame hack 2\n");
 	settings->player_classes[0] = player_class;
+    printf("D_StartNetGame hack 3\n");
 	settings->new_sync = 0;
+    printf("D_StartNetGame hack 4\n");
 	settings->extratics = 1;
+    printf("D_StartNetGame hack 5\n");
 	settings->ticdup = 1;
+    printf("D_StartNetGame hack 6\n");
 
 	ticdup = settings->ticdup;
 	new_sync = settings->new_sync;

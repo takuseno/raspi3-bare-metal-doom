@@ -39,6 +39,7 @@ void HUlib_init(void)
 
 void HUlib_clearTextLine(hu_textline_t* t)
 {
+    printf("HUlib_clearTextLine hack\n");
     t->len = 0;
     t->l[0] = 0;
     t->needsupdate = true;
@@ -52,6 +53,7 @@ HUlib_initTextLine
   patch_t**		f,
   int			sc )
 {
+    printf("HUlib_initTextLine hack\n");
     t->x = x;
     t->y = y;
     t->f = f;
@@ -182,10 +184,14 @@ HUlib_initSText
     s->on = on;
     s->laston = true;
     s->cl = 0;
-    for (i=0;i<h;i++)
-	HUlib_initTextLine(&s->l[i],
-			   x, y - i*(SHORT(font[0]->height)+1),
-			   font, startchar);
+    for (i=0;i<h;i++) {
+
+        printf("HUlib_initSText hack\n");
+        short height = SHORT(font[0]->height);
+        HUlib_initTextLine(&s->l[i],
+                   x, y - i*(height+1),
+                   font, startchar);
+    }
 
 }
 
@@ -267,6 +273,7 @@ HUlib_initIText
   int		startchar,
   boolean*	on )
 {
+    printf("HUlib_initIText hack\n");
     it->lm = 0; // default left margin is start of text
     it->on = on;
     it->laston = true;

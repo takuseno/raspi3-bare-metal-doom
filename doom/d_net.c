@@ -158,8 +158,11 @@ static void SaveGameSettings(net_gamesettings_t *settings)
 
 static void InitConnectData(net_connect_data_t *connect_data)
 {
+    printf("InitConnectData hack0\n");
     connect_data->max_players = MAXPLAYERS;
+    printf("InitConnectData hack1\n");
     connect_data->drone = false;
+    printf("InitConnectData hack2\n");
 
     //!
     // @category net
@@ -179,6 +182,7 @@ static void InitConnectData(net_connect_data_t *connect_data)
     // Run as the right screen in three screen mode.
     //
 
+    printf("InitConnectData hack3\n");
     if (M_CheckParm("-right") > 0)
     {
         viewangleoffset = ANG270;
@@ -191,16 +195,19 @@ static void InitConnectData(net_connect_data_t *connect_data)
 
     // Game type fields:
 
+    printf("InitConnectData hack4\n");
     connect_data->gamemode = gamemode;
     connect_data->gamemission = gamemission;
 
     // Are we recording a demo? Possibly set lowres turn mode
 
+    printf("InitConnectData hack5\n");
     connect_data->lowres_turn = M_CheckParm("-record") > 0
                              && M_CheckParm("-longtics") == 0;
 
     // Read checksums of our WAD directory and dehacked information
 
+    printf("InitConnectData hack6\n");
     W_Checksum(connect_data->wad_sha1sum);
 
 #if ORIGCODE
@@ -209,7 +216,9 @@ static void InitConnectData(net_connect_data_t *connect_data)
 
     // Are we playing with the Freedoom IWAD?
 
+    printf("InitConnectData hack7\n");
     connect_data->is_freedoom = W_CheckNumForName("FREEDOOM") >= 0;
+    printf("InitConnectData hack8\n");
 }
 
 void D_ConnectNetGame(void)

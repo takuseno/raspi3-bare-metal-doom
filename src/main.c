@@ -10,8 +10,6 @@ void main() {
     uart_init();
     lfb_init();
 
-    lfb_showpicture();
-
     // register doom1.wad as file
     FILE* fp = fopen("doom1.wad", "w");
     fp->base = (char*) &_binary_doom1_wad_start;
@@ -19,8 +17,14 @@ void main() {
     fp->bufsiz = &_binary_doom1_wad_end - &_binary_doom1_wad_start;
     fp->count = &_binary_doom1_wad_end - &_binary_doom1_wad_start;
 
-    char* tmp[3] = {"doom", "-iwad", "doom1.wad"};
-    doomgeneric_Create(3, tmp);
+    char *arg0 = "doom";
+    char *arg1 = "-iwad";
+    char *arg2 = "doom1.wad";
+    char* argv[3];
+    argv[0] = arg0;
+    argv[1] = arg1;
+    argv[2] = arg2;
+    doomgeneric_Create(3, argv);
 
     while (1) {
         doomgeneric_Tick();

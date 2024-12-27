@@ -183,6 +183,7 @@ void I_InitGraphics (void)
 {
     int i;
 
+    printf("I_InitGraphics hack0\n");
 	memset(&s_Fb, 0, sizeof(struct FB_ScreenInfo));
 	s_Fb.xres = DOOMGENERIC_RESX;
 	s_Fb.yres = DOOMGENERIC_RESY;
@@ -195,13 +196,16 @@ void I_InitGraphics (void)
 
 #else  // CMAP256
 
+    printf("I_InitGraphics hack1\n");
 	s_Fb.bits_per_pixel = 32;
 
+    printf("I_InitGraphics hack2\n");
 	s_Fb.blue.length = 8;
 	s_Fb.green.length = 8;
 	s_Fb.red.length = 8;
 	s_Fb.transp.length = 8;
 
+    printf("I_InitGraphics hack3\n");
 	s_Fb.blue.offset = 0;
 	s_Fb.green.offset = 8;
 	s_Fb.red.offset = 16;

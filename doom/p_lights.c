@@ -118,20 +118,28 @@ void P_SpawnLightFlash (sector_t*	sector)
 {
     lightflash_t*	flash;
 
+    printf("P_SpawnLightFlash hack0\n");
     // nothing special about it during gameplay
     sector->special = 0;	
 	
+    printf("P_SpawnLightFlash hack1\n");
     flash = Z_Malloc ( sizeof(*flash), PU_LEVSPEC, 0);
 
+    printf("P_SpawnLightFlash hack2\n");
     P_AddThinker (&flash->thinker);
 
+    printf("P_SpawnLightFlash hack3\n");
     flash->thinker.function.acp1 = (actionf_p1) T_LightFlash;
     flash->sector = sector;
     flash->maxlight = sector->lightlevel;
 
+    printf("P_SpawnLightFlash hack4\n");
     flash->minlight = P_FindMinSurroundingLight(sector,sector->lightlevel);
+    printf("P_SpawnLightFlash hack5\n");
     flash->maxtime = 64;
+    printf("P_SpawnLightFlash hack6\n");
     flash->mintime = 7;
+    printf("P_SpawnLightFlash hack7\n");
     flash->count = (P_Random()&flash->maxtime)+1;
 }
 

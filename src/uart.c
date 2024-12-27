@@ -63,6 +63,18 @@ void uart_send(unsigned int c) {
     *UART0_DR=c;
 }
 
+char uart_getc_no_block() {
+    char r;
+    if (!(*UART0_FR&0x10)) {
+        /* read it and return */
+        r=(char)(*UART0_DR);
+        /* convert carrige return to newline */
+        return r=='\r'?'\n':r;
+    } else {
+        return 0;
+    }
+}
+
 /**
  * Receive a character
  */

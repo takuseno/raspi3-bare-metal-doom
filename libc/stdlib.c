@@ -16,7 +16,6 @@ void* malloc(size_t size) {
         return 0;
     }
     void* ptr = (void*)(&__free_ram_end - cursor_from_end);
-    printf("malloc size=%d, address=%d\n", size, ptr);
     return ptr;
 }
 

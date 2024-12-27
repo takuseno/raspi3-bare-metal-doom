@@ -348,9 +348,13 @@ void D_BindVariables(void)
     M_BindMenuControls();
     // M_BindChatControls(MAXPLAYERS);
 
+    printf("D_BindVariables hack0\n");
     key_multi_msgplayer[0] = HUSTR_KEYGREEN;
+    printf("D_BindVariables hack1\n");
     key_multi_msgplayer[1] = HUSTR_KEYINDIGO;
+    printf("D_BindVariables hack2\n");
     key_multi_msgplayer[2] = HUSTR_KEYBROWN;
+    printf("D_BindVariables hack3\n");
     key_multi_msgplayer[3] = HUSTR_KEYRED;
 
 #ifdef FEATURE_MULTIPLAYER
@@ -404,12 +408,15 @@ boolean D_GrabMouseCallback(void)
 
 void doomgeneric_Tick()
 {
+    static int counter = 0;
+    printf("loop counter %d\n", counter++);
+
     // frame syncronous IO operations
     I_StartFrame ();
 
     TryRunTics (); // will run at least one tic
 
-    S_UpdateSounds (players[consoleplayer].mo);// move positional sounds
+    //S_UpdateSounds (players[consoleplayer].mo);// move positional sounds
 
     // Update display, next frame, with current state.
     if (screenvisible)
@@ -505,6 +512,7 @@ void D_AdvanceDemo (void)
 //
 void D_DoAdvanceDemo (void)
 {
+    printf("Starting demo...\n");
     players[consoleplayer].playerstate = PST_LIVE;  // not reborn
     advancedemo = false;
     usergame = false;               // no save / end game here

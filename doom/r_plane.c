@@ -240,11 +240,17 @@ R_FindPlane
 		
     lastvisplane++;
 
+    printf("R_FindPlane hack0\n");
     check->height = height;
+    printf("R_FindPlane hack1\n");
     check->picnum = picnum;
+    printf("R_FindPlane hack2\n");
     check->lightlevel = lightlevel;
+    printf("R_FindPlane hack3\n");
     check->minx = SCREENWIDTH;
+    printf("R_FindPlane hack4\n");
     check->maxx = -1;
+    printf("R_FindPlane hack5\n");
     
     memset (check->top,0xff,sizeof(check->top));
 		

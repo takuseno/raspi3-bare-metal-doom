@@ -863,9 +863,11 @@ void P_MovePsprites (player_t* player)
     pspdef_t*	psp;
     state_t*	state;
 	
+    printf("P_MovePsprites hack0\n");
     psp = &player->psprites[0];
     for (i=0 ; i<NUMPSPRITES ; i++, psp++)
     {
+    printf("P_MovePsprites hack1\n");
 	// a null state means not active
 	if ( (state = psp->state) )	
 	{
@@ -874,14 +876,18 @@ void P_MovePsprites (player_t* player)
 	    // a -1 tic count never changes
 	    if (psp->tics != -1)	
 	    {
+        printf("P_MovePsprites hack2\n");
 		psp->tics--;
 		if (!psp->tics)
 		    P_SetPsprite (player, i, psp->state->nextstate);
 	    }				
+    printf("P_MovePsprites hack3\n");
 	}
     }
     
+    printf("P_MovePsprites hack4\n");
     player->psprites[ps_flash].sx = player->psprites[ps_weapon].sx;
+    printf("P_MovePsprites hack5\n");
     player->psprites[ps_flash].sy = player->psprites[ps_weapon].sy;
 }
 

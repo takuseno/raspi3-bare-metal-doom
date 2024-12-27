@@ -229,7 +229,7 @@ extern  mapthing_t      deathmatchstarts[MAX_DM_STARTS];
 extern  mapthing_t*	deathmatch_p;
 
 // Player spawn spots.
-extern  mapthing_t      playerstarts[MAXPLAYERS];
+extern mapthing_t playerstarts[MAXPLAYERS];
 
 // Intermission stats.
 // Parameters for world map / intermission.

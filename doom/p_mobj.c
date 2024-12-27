@@ -37,7 +37,6 @@
 void G_PlayerReborn (int player);
 void P_SpawnMapThing (mapthing_t*	mthing);
 
-
 //
 // P_SetMobjState
 // Returns true if the mobj is still present.
@@ -768,7 +767,8 @@ void P_SpawnMapThing (mapthing_t* mthing)
     if (mthing->type <= 4)
     {
 	// save spots for respawning in network games
-	playerstarts[mthing->type-1] = *mthing;
+    int mindex = mthing->type-1;
+    memcpy(playerstarts + mindex, mthing, sizeof(mapthing_t));
 	if (!deathmatch)
 	    P_SpawnPlayer (mthing);
 
@@ -821,7 +821,9 @@ void P_SpawnMapThing (mapthing_t* mthing)
 	z = ONFLOORZ;
     
     mobj = P_SpawnMobj (x,y,z, i);
-    mobj->spawnpoint = *mthing;
+    // this causes hangs for some reason...
+    //mobj->spawnpoint = *mthing;
+    memcpy(&mobj->spawnpoint, mthing, sizeof(mapthing_t));
 
     if (mobj->tics > 0)
 	mobj->tics = 1 + (P_Random () % mobj->tics);
